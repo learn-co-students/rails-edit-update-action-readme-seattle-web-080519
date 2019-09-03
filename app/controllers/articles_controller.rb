@@ -18,6 +18,17 @@ class ArticlesController < ApplicationController
     @article.save
     redirect_to article_path(@article)
   end
+  # add edit and update methods here:
 
-  # add edit and update methods here
+  def update
+    @article = Article.find(params[:id])
+    @article.update(title: params[:article][:title], description: params[:article][:description])
+    # #update method takes a hash of the attributes for the model as its argument, e.g. `Article.find(1).update(title: "I'm Changed", description: "And here too!")
+    redirect_to article_path(@article)
+  end
+
+  def edit
+    @article = Article.find(params[:id])
+  end
+
 end
